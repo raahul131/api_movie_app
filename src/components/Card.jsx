@@ -15,7 +15,7 @@ const Card = (props) => {
     const json = await data.json();
     const movieList = json.data.movies;
     setMovies(movieList);
-    console.log(json);
+    // console.log(json?.data?.movies[0]?.torrents);
   }
 
   return (

@@ -11,12 +11,14 @@ import {
 import Layout from "./Layout";
 import MovieDetails from "./components/MovieDetails";
 import Home from "./components/Home";
+import Download from "./components/Download";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="" element={<Layout />}>
       <Route path="/" element={<Home />} />
       <Route path="/movie/:id" element={<MovieDetails />} />
+      <Route path="/download" element={<Download />} />
     </Route>
   )
 );

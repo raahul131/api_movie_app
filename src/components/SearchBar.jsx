@@ -1,3 +1,5 @@
+import { BiSearch } from "react-icons/bi";
+
 const SearchBar = () => {
   return (
     <>
@@ -7,8 +9,8 @@ const SearchBar = () => {
           placeholder="Search your favourite movies and shows"
           className="border-2 border-gray-500 rounded-xl p-2 w-full text-center"
         />
-        <button className="border-2 p-2 border-gray-500 rounded-full bg-white font-semibold">
-          search
+        <button className="border-2 p-2 border-gray-500 rounded-full bg-white font-bold text-2xl">
+          <BiSearch />
         </button>
       </div>
     </>

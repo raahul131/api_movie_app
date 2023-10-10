@@ -3,12 +3,16 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AiOutlineDownload } from "react-icons/ai";
 import { FaImdb } from "react-icons/fa";
+import Download from "./Download";
 
 const MovieDetails = () => {
   const [details, setDetails] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const params = useParams();
   const { id } = params;
+
+  const closeModal = () => setShowModal(false);
 
   useEffect(() => {
     getMovieDetails();
@@ -20,7 +24,7 @@ const MovieDetails = () => {
       .get("https://yts.mx/api/v2/movie_details.json?movie_id=" + id)
       .then((res) => {
         setDetails(res?.data?.data?.movie);
-        // console.log(res?.data?.data?.movie);
+        // console.log(res?.data?.data?.movie?.torrents);
       })
 
       .catch((err) => {
@@ -50,9 +54,13 @@ const MovieDetails = () => {
             alt=""
             className="border-white border-8 rounded-md w-full"
           />
-          <div className="bg-blue-600 hover:bg-blue-700 cursor-pointer text-center mt-2 p-2 font-semibold text-white rounded-md tracking-wider text-lg">
+          <button
+            onClick={() => setShowModal(true)}
+            className="bg-blue-600 w-full cursor-pointer hover:bg-blue-700 text-center mt-2 p-2 font-semibold text-white rounded-md tracking-wider text-lg"
+          >
             Download
-          </div>
+          </button>
+          {showModal && <Download closeModal={closeModal} />}
           <div className="bg-green-500 hover:bg-green-700 cursor-pointer text-center mt-2 p-2 font-semibold text-white rounded-md tracking-wider text-lg">
             Watch
           </div>
