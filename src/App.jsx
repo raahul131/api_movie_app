@@ -1,16 +1,13 @@
-import Card from "./components/Card";
-import Footer from "./components/Footer";
-import NavBar from "./components/NavBar";
-import SearchBar from "./components/SearchBar";
+import { Routes, Route } from "react-router-dom";
+import MovieDetails from "./components/MovieDetails";
+import Layout from "./components/Layout";
 
 const App = () => {
   return (
-    <div>
-      <NavBar />
-      <SearchBar />
-      <Card />
-      <Footer />
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />} />
+      <Route path="/movie/:id" element={<MovieDetails />} />
+    </Routes>
   );
 };
 
