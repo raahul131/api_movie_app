@@ -1,10 +1,10 @@
 import Card from "./Card";
-import SearchBar from "./SearchBar";
+// import SearchBar from "./SearchBar";
 
 const Home = () => {
   return (
     <div>
-      <SearchBar />
+      {/* <SearchBar /> */}
       <Card />
     </div>
   );

@@ -1,7 +1,7 @@
 const MovieCard = ({ title, rating, genres, year, image }) => {
   return (
     <>
-      <card>
+      <div>
         <img src={image} className="rounded-t-lg" />
         <div className="pl-2 pb-2">
           <div className="font-bold text-white pt-3">{title}</div>
@@ -9,7 +9,7 @@ const MovieCard = ({ title, rating, genres, year, image }) => {
           <div className="text-white flex ">{genres.join(", ")}</div>
           <div className="text-gray-400">{year}</div>
         </div>
-      </card>
+      </div>
     </>
   );
 };

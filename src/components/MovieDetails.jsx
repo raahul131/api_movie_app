@@ -9,6 +9,7 @@ const MovieDetails = () => {
   const [details, setDetails] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [casts, setCasts] = useState([]);
   const params = useParams();
   const { id } = params;
 
@@ -17,14 +18,19 @@ const MovieDetails = () => {
   useEffect(() => {
     getMovieDetails();
     getMovieSuggestions();
+    getCastDetails();
   }, []);
 
   const getMovieDetails = () => {
     axios
-      .get("https://yts.mx/api/v2/movie_details.json?movie_id=" + id)
+      .get(
+        "https://yts.mx/api/v2/movie_details.json?movie_id=" +
+          id +
+          "&with_images=true&with_cast=true"
+      )
       .then((res) => {
         setDetails(res?.data?.data?.movie);
-        // console.log(res?.data?.data?.movie?.torrents);
+        // console.log(res?.data?.data?.movie);
       })
 
       .catch((err) => {
@@ -37,7 +43,24 @@ const MovieDetails = () => {
       .get("https://yts.mx/api/v2/movie_suggestions.json?movie_id=" + id)
       .then((res) => {
         setSuggestions(res?.data?.data?.movies);
-        // console.log(res?.data?.data?.movies);
+        console.log(res?.data?.data?.movies);
+      })
+
+      .catch((err) => {
+        console.log("err", err);
+      });
+  };
+
+  const getCastDetails = () => {
+    axios
+      .get(
+        "https://yts.mx/api/v2/movie_details.json?movie_id=" +
+          id +
+          "&with_images=true&with_cast=true"
+      )
+      .then((res) => {
+        setCasts(res?.data?.data?.movie.cast);
+        // console.log(res.data.data.movie.cast);
       })
 
       .catch((err) => {
@@ -108,12 +131,33 @@ const MovieDetails = () => {
               <span className="text-zinc-500 text-sm">/10</span>
             </p>
           </div>
+
+          {/* Get Casts */}
+          <div className="pt-4">
+            <h1 className="text-white font-semibold text-lg underline">
+              Casts
+            </h1>
+            <ul className="flex gap-3">
+              {casts.map((item) => (
+                <li key={item.id}>
+                  <div>
+                    <img
+                      src={item.url_small_image}
+                      alt=""
+                      className="pt-1 rounded-md shadow-md shadow-gray-50"
+                    />
+                  </div>
+                  <div className="text-white italic pt-1">{item.name}</div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Suggestions */}
         <div className="hidden md:block">
           <h1 className="text-white font-semibold text-lg">Similar movies</h1>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {suggestions.map((item) => (
               <li key={item.id}>
                 <div>
@@ -123,6 +167,7 @@ const MovieDetails = () => {
                     className="md:w-28 border-4 border-white rounded"
                   />
                 </div>
+                {/* <h1 className="text-white text-xs pt-1">{item.title}</h1> */}
               </li>
             ))}
           </ul>
