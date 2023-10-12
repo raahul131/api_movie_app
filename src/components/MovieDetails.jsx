@@ -138,7 +138,7 @@ const MovieDetails = () => {
               Casts
             </h1>
             <ul className="flex gap-3">
-              {casts.map((item) => (
+              {casts?.map((item) => (
                 <li key={item.id}>
                   <div>
                     <img
@@ -158,7 +158,7 @@ const MovieDetails = () => {
         <div className="hidden md:block">
           <h1 className="text-white font-semibold text-lg">Similar movies</h1>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {suggestions.map((item) => (
+            {suggestions?.map((item) => (
               <li key={item.id}>
                 <div>
                   <img
