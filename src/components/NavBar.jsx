@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { NAVBAR_HEADINGS } from "../../constants/utils";
+import Logo from "../assets/Logonetflix.png";
 
 const NavBar = () => {
   return (
@@ -9,10 +10,10 @@ const NavBar = () => {
           to="/"
           className="text-white font-bold text-2xl cursor-pointer hover:scale-105 transition-all duration-300"
         >
-          MFLIX
+          <img src={Logo} alt="" className="w-24" />
         </Link>
         <div>
-          <ul className="text-white/70  flex gap-4  font-medium">
+          <ul className="text-red-500  flex gap-4  font-medium">
             {/* <li className="hover:underline cursor-pointer hover:text-red-400">
               Bollywood
             </li>
@@ -31,7 +32,7 @@ const NavBar = () => {
             {NAVBAR_HEADINGS.map((item, index) => (
               <li
                 key={`navbaritem_${item.name}_${index}`}
-                className="hover:underline cursor-pointer hover:text-white"
+                className="hover:underline hidden md:block cursor-pointer hover:text-red-700"
               >
                 {item.name}
               </li>
@@ -39,10 +40,10 @@ const NavBar = () => {
           </ul>
         </div>
         <div className="">
-          <button className="text-white border-white border-2 mx-5 rounded-lg p-2 hover:bg-white hover:text-black font-semibold transition-all duration-300">
+          <button className="text-red-500 border-red-600 border-2 mx-5 rounded-lg p-2 hover:bg-red-700 hover:text-black font-semibold transition-all duration-300">
             SignIn
           </button>
-          <button className="text-white border-white border-2 rounded-lg p-2 hover:bg-white hover:text-black font-semibold transition-all duration-300">
+          <button className="text-red-500 border-red-600 border-2 rounded-lg p-2 hover:bg-red-700 hover:text-black font-semibold transition-all duration-300">
             SigUp
           </button>
         </div>

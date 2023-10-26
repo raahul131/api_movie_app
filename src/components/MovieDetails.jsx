@@ -79,12 +79,12 @@ const MovieDetails = () => {
           />
           <button
             onClick={() => setShowModal(true)}
-            className="bg-blue-600 w-full cursor-pointer hover:bg-blue-700 text-center mt-2 p-2 font-semibold text-white rounded-md tracking-wider text-lg"
+            className="bg-red-600 w-full cursor-pointer hover:bg-red-700 text-center mt-2 p-2 font-semibold text-white rounded-md tracking-wider text-lg"
           >
             Download
           </button>
           {showModal && <Download closeModal={closeModal} />}
-          <div className="bg-green-500 hover:bg-green-700 cursor-pointer text-center mt-2 p-2 font-semibold text-white rounded-md tracking-wider text-lg">
+          <div className="bg-red-600 hover:bg-red-700 cursor-pointer text-center mt-2 p-2 font-semibold text-white rounded-md tracking-wider text-lg">
             Watch
           </div>
         </div>

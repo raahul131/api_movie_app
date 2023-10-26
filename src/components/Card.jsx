@@ -3,6 +3,7 @@ import { useState } from "react";
 import MovieCard from "./MovieCard";
 import { Link } from "react-router-dom";
 import MovieCardShimmer from "./MovieCardShimmer";
+import { AiFillStar } from "react-icons/ai";
 
 function filterData(searchText, movies) {
   return movies.filter((movies) =>
@@ -39,11 +40,11 @@ const Card = () => {
         <MovieCardShimmer />
       ) : (
         <div>
-          <div className=" flex items-center justify-between gap-4 p-4 mx-14">
+          <div className=" flex items-center justify-between gap-4 p-4 mx-28">
             <input
               type="text"
               placeholder="Search your favourite movies and shows"
-              className="border-2 border-gray-500 rounded-xl p-2 w-full text-center"
+              className="border-2 border-red-500 rounded-xl p-2 w-full text-center"
               value={searchText}
               onChange={(e) => {
                 if (!e.target.value) {
@@ -69,13 +70,31 @@ const Card = () => {
           </div>
 
           {filteredMovies?.length > 0 ? (
-            <div className="flex flex-wrap gap-8 md:gap-11  justify-center my-10 mx-5">
+            <div className="flex flex-wrap gap-8 md:gap-11 justify-center my-10 mx-5 ">
               {filteredMovies.map((data, id) => (
                 <Link
                   to={"/movie/" + data.id}
                   key={data.id}
-                  className="shadow-md rounded-lg shadow-white h-auto w-56"
+                  className="shadow-[0_0_15px_red] rounded-lg  h-auto w-56 relative overflow-hidden card group"
                 >
+                  {/* Hover Effect */}
+                  <div className="absolute rounded-t-lg h-[340px] w-56 bg-black/70 justify-center items-center flex flex-col pt-16 card_body transition-all duration-700 -top-[100%] group-hover:top-0">
+                    <div className="text-red-600 text-3xl">
+                      <AiFillStar />
+                    </div>
+                    <h1 className="text-white text-lg font-semibold">
+                      {data.rating}/10
+                    </h1>
+                    <p className="pt-8 text-white text-center font-bold px-4">
+                      {data.genres?.join(" . ")}
+                    </p>
+                    <div className="pt-14">
+                      <button className=" bg-red-600 px-2 py-1 text-white rounded-md text-lg font-bold tracking-wide hover:bg-red-700">
+                        View Details
+                      </button>
+                    </div>
+                  </div>
+
                   <MovieCard
                     key={id}
                     title={data.title}
