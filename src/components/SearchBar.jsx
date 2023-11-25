@@ -10,7 +10,7 @@ const SearchBar = () => {
           className="border-2 border-gray-500 rounded-xl p-2 w-full text-center"
         />
         <button className="border-2 p-2 border-gray-500 rounded-full bg-white font-bold text-2xl">
-          <BiSearch />
+          <BiSearch />    
         </button>
       </div>
     </>

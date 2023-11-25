@@ -20,6 +20,7 @@ const Card = () => {
   useEffect(() => {
     moviesLIst();
   }, []);
+
   async function moviesLIst() {
     const data = await fetch("https://yts.mx/api/v2/list_movies.json");
     const json = await data.json();
@@ -40,11 +41,11 @@ const Card = () => {
         <MovieCardShimmer />
       ) : (
         <div>
-          <div className=" flex items-center justify-between gap-4 p-4 mx-28">
+          <div className=" flex items-center justify-between gap-4 py-4 mx-14 md:mx-28">
             <input
               type="text"
               placeholder="Search your favourite movies and shows"
-              className="border-2 border-red-500 rounded-xl p-2 w-full text-center"
+              className="border-2 border-red-500 rounded-xl py-2 w-full text-center text-sm"
               value={searchText}
               onChange={(e) => {
                 if (!e.target.value) {
@@ -70,15 +71,15 @@ const Card = () => {
           </div>
 
           {filteredMovies?.length > 0 ? (
-            <div className="flex flex-wrap gap-8 md:gap-11 justify-center my-10 mx-5 ">
+            <div className="flex flex-wrap gap-5 md:gap-8 justify-center my-10 mx-5 ">
               {filteredMovies.map((data, id) => (
                 <Link
                   to={"/movie/" + data.id}
                   key={data.id}
-                  className="shadow-[0_0_15px_red] rounded-lg  h-auto w-56 relative overflow-hidden card group"
+                  className="h-auto w-56 relative overflow-hidden card group"
                 >
                   {/* Hover Effect */}
-                  <div className="absolute rounded-t-lg h-[340px] w-56 bg-black/70 justify-center items-center flex flex-col pt-16 card_body transition-all duration-700 -top-[100%] group-hover:top-0">
+                  <div className="absolute h-[340px] w-56 bg-black/70 justify-center items-center flex flex-col pt-10 card_body transition-all duration-700 -top-[100%] group-hover:top-0">
                     <div className="text-red-600 text-3xl">
                       <AiFillStar />
                     </div>
